@@ -1,0 +1,70 @@
+/* General Body Styling */
+body {
+  background-color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main Container Styling */
+.container {
+  width: 90%;
+  max-width: 600px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+}
+
+/* Header Styling */
+h1 {
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+h2 {
+  color: #555;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Chart Section Styling */
+.chart {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Container */
+.button-container {
+  margin-top: 20px;
+}
+
+/* Button Styling */
+.button {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: background-color 0.3s ease;
+}
+.button:hover {
+  background-color: #45a049;
+}
+.button-secondary {
+  background-color: #007BFF; /* Blue */
+}
+.button-secondary:hover {
+  background-color: #0056b3;
+}
