@@ -1,5 +1,4 @@
-# Open the folder 
-# Run the app
-`bash
+# How to run app
+`
 python app.py
 `
