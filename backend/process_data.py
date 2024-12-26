@@ -13,7 +13,7 @@ class PreprocessData:
             clean_data = pd.read_csv(file_path, encoding='latin1')
         
         #drop missing value
-        clean_data.dropna()
+        clean_data.dropna(subset=['Primary Factor', 'Injury Type'])
         
         clean_data['Primary Factor'] = clean_data['Primary Factor'].fillna('Unknown')
         

@@ -1,25 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Traffic Accident Analysis</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Accident Analysis</title>
+    <!-- Bootstrap CSS for tabs -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
 </head>
 <body>
-  <div class="container">
-    <h1>Traffic Accident Severity Analysis</h1>
-    <h2>Predicting accident severity and causes</h2>
-    
-    <div class="chart">
-      <!-- Placeholder for charts -->
-      <img src="/plot.png" alt="Traffic Accident Chart">
+    <div class="container mt-5">
+        <h1 class="text-center">Traffic Accident Analysis</h1>
+        <h2 class="text-center">Predicting Accident Severity and Causes</h2>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs w-100" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="plot-tab" data-bs-toggle="tab" href="#plot" role="tab" aria-controls="plot" aria-selected="true">Factors</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="prediction-tab" data-bs-toggle="tab" href="#prediction" role="tab" aria-controls="prediction" aria-selected="false">Severity Prediction</a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content mt-3" id="myTabContent">
+            <!-- First Tab - Plot Image -->
+            <div class="tab-pane fade show active" id="plot" role="tabpanel" aria-labelledby="plot-tab">
+                <h4 class="text-center">Traffic Accident Severity Analysis</h4>
+                <div class="text-center">
+                    <!-- Dynamically generated plot image -->
+                    <img src="/plot.png" alt="Traffic Accident Plot" class="img-fluid">
+                </div>
+            </div>
+
+            <!-- Second Tab - Severity Prediction -->
+            <div class="tab-pane fade" id="prediction" role="tabpanel" aria-labelledby="prediction-tab">
+                <h4 class="text-center">Severity Prediction Plot</h4>
+                <div class="text-center">
+                    <!-- Dynamically generated severity prediction plot image -->
+                    <img src="/severity_plot.png" alt="Severity Prediction Plot" class="img-fluid">
+                </div>
+            </div>
+        </div>
     </div>
-    
-    <div class="button-container">
-      <button class="button">Run Prediction</button>
-      <button class="button button-secondary">Refresh Data</button>
-    </div>
-  </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
