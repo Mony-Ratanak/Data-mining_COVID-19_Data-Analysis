@@ -14,6 +14,8 @@ model_accuracy = 0
 le_factor = LabelEncoder()
 le_injury = LabelEncoder()
 
+
+
 def Clustering(df):
    # Step 1: Encode categorical variables
    df['Primary Factor Encoded'] = le_factor.fit_transform(df['Primary Factor'])
@@ -34,7 +36,6 @@ def Clustering(df):
    y_pred = model.predict(X_test)
    global model_accuracy 
    model_accuracy = accuracy_score(y_test, y_pred)
-   print(f'{model_accuracy*100:.2f}%%')
    
    return model
 
@@ -46,7 +47,6 @@ def getPlot(input_factor='Unknown',model = None,viz_type = 'bar'):
 
    # Get prediction probabilities
    pred_probs = model.predict_proba(input_data)[0]
-
    # Step 4: Visualize the likelihood of injury types for the given factor
    # Get injury type names
    injury_types = le_injury.classes_
@@ -86,7 +86,7 @@ def getPlot(input_factor='Unknown',model = None,viz_type = 'bar'):
    
    
    
-   plt.title(f"Prediction of Injury Types for '{input_factor}' with Clustering Model", fontsize=14)
+   plt.title(f"Prediction of Injury Types for '{input_factor}' with Clusting Model (Accuracy: {model_accuracy*100:.2f}%)", fontsize=12)
    plt.xlabel('')
    plt.ylabel('Probability', fontsize=12)
    plt.xticks(rotation=45)

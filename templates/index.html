@@ -17,7 +17,10 @@
                 <a class="nav-link active" id="plot-tab" data-bs-toggle="tab" href="#plot" role="tab" aria-controls="plot" aria-selected="true">Factors</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="prediction-tab" data-bs-toggle="tab" href="#prediction" role="tab" aria-controls="prediction" aria-selected="false">Severity Prediction</a>
+                <a class="nav-link" id="prediction-tab" data-bs-toggle="tab" href="#prediction" role="tab" aria-controls="prediction" aria-selected="false">Severity Prediction (Clustering)</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="prediction-tab-linear" data-bs-toggle="tab" href="#prediction-linear" role="tab" aria-controls="prediction-linear" aria-selected="false">Severity Prediction (Linear Regression)</a>
             </li>
         </ul>
 
@@ -64,6 +67,41 @@
                     <img id="severityPlot" src="" class="img-fluid">
                 </div>
             </div>
+
+
+            <!-- Third Tab - Severity Prediction lINEAR-->
+            <div class="tab-pane fade" id="prediction-linear" role="tabpanel" aria-labelledby="prediction-tab-linear">
+                <div class="text-center mb-3">
+                    
+                     <!-- Compact Form with Flex -->
+                    <form id="predictionForm" class="d-flex align-items-center justify-content-center gap-4 mb-3">
+                        <!-- Input for Input Factor -->
+                        <div>
+                            <label for="inputFactor" class="form-label">Input Factor</label>
+                            <input type="text" class="form-control" id="inputFactor" name="inputFactor" placeholder="Enter factor">
+                        </div>
+
+                        <!-- Dropdown for Visualization Type -->
+                        <div>
+                            <label for="visualizationType" class="form-label">Visualization Type</label>
+                            <select class="form-select" id="visualizationType" name="visualizationType">
+                                <option value="bar">Bar Plot</option>
+                                <option value="pie">Pie Chart</option>
+                            </select>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="align-self-end">
+                            <button type="button" class="btn btn-primary" onclick="submitPredictionButLinear()">Predict</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="text-center">
+                    <!-- Dynamically generated severity prediction plot image -->
+                    <img id="severityPlotLinear" src="" class="img-fluid">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -91,6 +129,33 @@
                 .then(blob => {
                     // Update the severity plot with the new image
                     const img = document.getElementById('severityPlot');
+                    img.src = URL.createObjectURL(blob);
+                })
+                .catch(error => {
+                    console.error('Error fetching prediction:', error);
+                });
+        }
+        function submitPredictionButLinear() {
+            // Get the user inputs
+            const inputFactor = document.getElementById('inputFactor').value;
+            const visualizationType = document.getElementById('visualizationType').value;
+
+            // Make an API call to update the prediction (you need a backend route for this)
+            fetch(`/predictLinaer`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    factor: inputFactor,
+                    type: visualizationType,
+                }),
+            })
+                .then(response => response.blob())
+                .then(blob => {
+                    // Update the severity plot with the new image
+                    const img = document.getElementById('severityPlotLinear');
                     img.src = URL.createObjectURL(blob);
                 })
                 .catch(error => {

@@ -25,7 +25,7 @@ def FactorPlot(df):
 
     # Create the plot
     try:
-        fig, ax = plt.subplots(figsize=(12, 4))
+        fig, ax = plt.subplots(figsize=(12, 6))
         sns.barplot(data=top_factors_df, x='Primary Factor', y='Count', palette='viridis', ax=ax)
         ax.set_title('Top Primary Factors by Total Count', fontsize=12)
         ax.set_xlabel('', fontsize=12)
