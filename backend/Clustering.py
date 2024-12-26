@@ -86,7 +86,7 @@ def getPlot(input_factor='Unknown',model = None,viz_type = 'bar'):
    
    
    
-   plt.title(f"Prediction of Injury Types for '{input_factor}' with Clusting Model (Accuracy: {model_accuracy*100:.2f}%)", fontsize=12)
+   plt.title(f"Prediction of Severity of'{input_factor}' with Clusting Model (Accuracy: {model_accuracy*100:.2f}%)", fontsize=10)
    plt.xlabel('')
    plt.ylabel('Probability', fontsize=12)
    plt.xticks(rotation=45)

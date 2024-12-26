@@ -77,14 +77,14 @@
                     <form id="predictionForm" class="d-flex align-items-center justify-content-center gap-4 mb-3">
                         <!-- Input for Input Factor -->
                         <div>
-                            <label for="inputFactor" class="form-label">Input Factor</label>
-                            <input type="text" class="form-control" id="inputFactor" name="inputFactor" placeholder="Enter factor">
+                            <label for="inputFactor1" class="form-label">Input Factor</label>
+                            <input type="text" class="form-control" id="inputFactor1" name="inputFactor1" placeholder="Enter factor">
                         </div>
 
                         <!-- Dropdown for Visualization Type -->
                         <div>
-                            <label for="visualizationType" class="form-label">Visualization Type</label>
-                            <select class="form-select" id="visualizationType" name="visualizationType">
+                            <label for="visualizationType1" class="form-label">Visualization Type</label>
+                            <select class="form-select" id="visualizationType1" name="visualizationType1">
                                 <option value="bar">Bar Plot</option>
                                 <option value="pie">Pie Chart</option>
                             </select>
@@ -137,8 +137,8 @@
         }
         function submitPredictionButLinear() {
             // Get the user inputs
-            const inputFactor = document.getElementById('inputFactor').value;
-            const visualizationType = document.getElementById('visualizationType').value;
+            const inputFactor = document.getElementById('inputFactor1').value;
+            const visualizationType = document.getElementById('visualizationType1').value;
 
             // Make an API call to update the prediction (you need a backend route for this)
             fetch(`/predictLinaer`,
