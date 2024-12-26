@@ -25,12 +25,12 @@ def FactorPlot(df):
 
     # Create the plot
     try:
-        fig, ax = plt.subplots(figsize=(12, 6))
+        fig, ax = plt.subplots(figsize=(12, 4))
         sns.barplot(data=top_factors_df, x='Primary Factor', y='Count', palette='viridis', ax=ax)
-        ax.set_title('Top 10 Primary Factors by Total Count', fontsize=16)
+        ax.set_title('Top Primary Factors by Total Count', fontsize=12)
         ax.set_xlabel('', fontsize=12)
         ax.set_ylabel('Total Count', fontsize=12)
-        ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right', fontsize=10)
+        ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right', fontsize=8)
 
         # Add the count on top of each bar
         for p in ax.patches:
@@ -43,7 +43,7 @@ def FactorPlot(df):
 
         # Save the plot to an in-memory binary stream
         output = io.BytesIO()
-        fig.savefig(output, format='png')
+        fig.savefig(output, format='png', dpi=300,bbox_inches='tight')
         plt.close(fig)
         output.seek(0)
         return output
