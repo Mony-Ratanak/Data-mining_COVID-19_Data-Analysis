@@ -36,13 +36,10 @@ def predict_severity():
             return jsonify({"error": "Input factor is required"}), 400
 
         input_factor = input_factor.upper()
-        print(input_factor)
 
         if viz_type == 'bar':
             output = getPlot(input_factor,cluster_model,viz_type)
         elif viz_type == 'pie':
-            output = getPlot(input_factor,cluster_model,viz_type)
-        elif viz_type == 'line':
             output = getPlot(input_factor,cluster_model,viz_type)
         else:
             return jsonify({"error": "Invalid visualization type"}), 400

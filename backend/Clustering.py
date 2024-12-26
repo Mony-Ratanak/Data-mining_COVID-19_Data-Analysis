@@ -57,26 +57,35 @@ def getPlot(input_factor='Unknown',model = None,viz_type = 'bar'):
    
    
    if(viz_type == 'bar'):
-      sns.barplot(x=injury_types, y=pred_probs, palette='viridis')
+      sns.barplot(x=injury_types, y=pred_probs, palette='viridis')   
+      # Add percentage labels on top of bars
+      for bar, prob in zip(ax.patches, pred_probs):
+         percentage = f"{prob * 100:.1f}%"  # Convert probability to percentage
+         ax.text(
+            bar.get_x() + bar.get_width() / 2,  # X-coordinate (center of the bar)
+            bar.get_height() + 0.01,  # Y-coordinate (just above the bar)
+            percentage,  # Text to display
+            ha='center',  # Horizontal alignment
+            va='bottom',  # Vertical alignment
+            fontsize=10,  # Font size
+            color='black'  # Text color
+         )
+         
+         
    elif(viz_type == 'pie'):
-      ax.pie(pred_probs, labels=injury_types, autopct='%1.1f%%', startangle=90)
-   elif(viz_type == 'line'):
-      sns.lineplot(x=injury_types, y=pred_probs, palette='viridis')
-      
-      
-      
-   # Add percentage labels on top of bars
-   for bar, prob in zip(ax.patches, pred_probs):
-      percentage = f"{prob * 100:.1f}%"  # Convert probability to percentage
-      ax.text(
-         bar.get_x() + bar.get_width() / 2,  # X-coordinate (center of the bar)
-         bar.get_height() + 0.01,  # Y-coordinate (just above the bar)
-         percentage,  # Text to display
-         ha='center',  # Horizontal alignment
-         va='bottom',  # Vertical alignment
-         fontsize=10,  # Font size
-         color='black'  # Text color
+      ax.pie(
+         pred_probs,
+         labels=injury_types,
+         autopct='%1.1f%%',
+         startangle=140,
+         colors=sns.color_palette('viridis', len(injury_types)),
+         pctdistance=0.85,  # Distance of the percentage from the center
+         labeldistance=1.1  # Distance of the labels from the center
       )
+      
+   
+   
+   
    plt.title(f"Prediction of Injury Types for '{input_factor}' with Clustering Model", fontsize=14)
    plt.xlabel('')
    plt.ylabel('Probability', fontsize=12)
