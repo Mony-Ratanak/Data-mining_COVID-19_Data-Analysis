@@ -38,7 +38,7 @@ def Clustering(df):
    
    return model
 
-def getPlot(input_factor='Unknown',model = None):
+def getPlot(input_factor='Unknown',model = None,viz_type = 'bar'):
    encoded_factor = le_factor.transform([input_factor])[0]  # Encode the input factor
 
    # Ensure the input is in DataFrame format with the correct column name
@@ -54,7 +54,17 @@ def getPlot(input_factor='Unknown',model = None):
 
    # Plot
    fig, ax = plt.subplots(figsize=(8, 6))
-   sns.barplot(x=injury_types, y=pred_probs, palette='viridis')
+   
+   
+   if(viz_type == 'bar'):
+      sns.barplot(x=injury_types, y=pred_probs, palette='viridis')
+   elif(viz_type == 'pie'):
+      ax.pie(pred_probs, labels=injury_types, autopct='%1.1f%%', startangle=90)
+   elif(viz_type == 'line'):
+      sns.lineplot(x=injury_types, y=pred_probs, palette='viridis')
+      
+      
+      
    # Add percentage labels on top of bars
    for bar, prob in zip(ax.patches, pred_probs):
       percentage = f"{prob * 100:.1f}%"  # Convert probability to percentage
@@ -67,7 +77,7 @@ def getPlot(input_factor='Unknown',model = None):
          fontsize=10,  # Font size
          color='black'  # Text color
       )
-   plt.title(f"Prediction of Injury Types for '{input_factor}'", fontsize=14)
+   plt.title(f"Prediction of Injury Types for '{input_factor}' with Clustering Model", fontsize=14)
    plt.xlabel('')
    plt.ylabel('Probability', fontsize=12)
    plt.xticks(rotation=45)
